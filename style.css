@@ -10,7 +10,7 @@ body {
 }
 
 .range-field {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
 .naslov {
@@ -27,11 +27,12 @@ body {
 .izracun {
     font-weight: bold;
     font-size: 2em;
-    margin: 20px;
 }
 
 .izracunBroj {
     font-size: 3em;
+    margin-top: 10px;
+    margin-bottom: 40px;
 }
 
 .postotciContainer {
@@ -68,5 +69,8 @@ body {
 
 label {
     font-weight: bolder;
+}
 
+.currencyContainer {
+    margin-bottom: 40px;
 }

@@ -1,13 +1,27 @@
 function izracunaj() {
-
     var usteda = prihodGodisnji * (efikasnost / 100 + krada);
     var zaradaPoStolu = usteda / brojStolova;
     var investicija = cijenaStola * brojStolova;
     var mjesecnaRata = investicija * 0.5 / 12;
     var sveukupnaUsteda = usteda * 2 - investicija;
     sveukupnaUsteda = sveukupnaUsteda.toLocaleString();
+    mjesecnaRata = mjesecnaRata.toFixed(2);
 
-    document.getElementById("sveukupnaUsteda").innerHTML = sveukupnaUsteda + " kn";
+    if (kunaButton.checked) {
+        document.getElementById("sveukupnaUsteda").innerHTML = sveukupnaUsteda + " kn";
+        document.getElementById("mjesecnaRata").innerHTML = mjesecnaRata + "kn";
+    
+    }
+    else if(euroButton.checked) {
+        document.getElementById("sveukupnaUsteda").innerHTML = sveukupnaUsteda + " &#8364;";
+        document.getElementById("mjesecnaRata").innerHTML = mjesecnaRata + "&#8364;";
+    
+    }
+    else if(dollarButton.checked) {
+        document.getElementById("sveukupnaUsteda").innerHTML = sveukupnaUsteda + " &#36;";
+        document.getElementById("mjesecnaRata").innerHTML = mjesecnaRata + "&#36;";
+    
+    }
 }
 
 function sliderChange() {
@@ -20,7 +34,12 @@ function sliderChange() {
     brojStolova = stoloviSlider.value;
     stoloviKocka.value = brojStolova;
 
-    efficiency(brojKonobara, prihodGodisnji);
+    konobarPlaca = placaSlider.value;
+    placaKocka.value = konobarPlaca;
+
+    document.getElementById("sveukupnaUsteda").innerHTML = "...";
+
+    efficiency(brojKonobara, konobarPlaca, prihodGodisnji);
 }
 
 function numberBox() {
@@ -33,12 +52,18 @@ function numberBox() {
     brojStolova = stoloviKocka.value;
     stoloviSlider.value = brojStolova;
 
-    efficiency(brojKonobara, prihodGodisnji);
+    konobarPlaca = placaKocka.value;
+    placaSlider.value = konobarPlaca;
+
+    document.getElementById("sveukupnaUsteda").innerHTML = "...";
+
+    efficiency(brojKonobara, konobarPlaca, prihodGodisnji);
 }
 
-function efficiency(konobar, prihod) {
-    efikasnost = ((konobar * placa * 12) / prihod) * 0.5 * 100;
+function efficiency(konobar, konobarPlata, prihod) {
+    efikasnost = ((konobar * konobarPlata * 12) / prihod) * 0.5 * 100;
     efikasnost = efikasnost.toFixed(2);
+    document.getElementById("postotakKrada").innerHTML = krada * 100 + "%";
     document.getElementById("postotakEfikasnost").innerHTML = efikasnost + "%";
 }
 
@@ -47,30 +72,16 @@ function efficiency(konobar, prihod) {
 var prihodKocka = document.getElementById("prihodBroj");
 var konobarKocka = document.getElementById("konobarBroj");
 var stoloviKocka = document.getElementById("stoloviBroj");
+var placaKocka = document.getElementById("konobarPlacaBroj");
 
 var prihodSlider = document.getElementById("prihod");
 var konobarSlider = document.getElementById("konobar");
 var stoloviSlider = document.getElementById("stolovi");
+var placaSlider = document.getElementById("konobarPlaca");
 
-var izracunKraj = document.getElementById("izracunKraj");
-
-//postavi početne brojeve
-var prihodGodisnji = prihodSlider.value * 1000000;
-var brojKonobara = konobarSlider.value;
-var brojStolova = stoloviSlider.value;
-
-prihodKocka.value = prihodSlider.value;
-konobarKocka.value = konobarSlider.value;
-stoloviKocka.value = stoloviSlider.value;
-var placa = 4000;
-var krada = 0.1;
-var cijenaStola = 20000;
-
-efficiency(brojKonobara, prihodGodisnji);
-
-
-document.getElementById("postotakKrada").innerHTML = krada * 100 + "%";
-document.getElementById("postotakEfikasnost").innerHTML = efikasnost + "%";
+var kunaButton = document.getElementById("kuna");
+var euroButton = document.getElementById("euro");
+var dollarButton = document.getElementById("dollar");
 
 //Slider dio koda
 sliders = document.querySelectorAll('.sliderDot');
@@ -78,6 +89,28 @@ sliders.forEach(slider => slider.addEventListener('input', sliderChange));
 
 //numberBox dio koda
 numbers = document.querySelectorAll('.numberDot');
-numbers.forEach(number => number.addEventListener('change', numberBox));
+numbers.forEach(number => number.addEventListener('input', numberBox));
+
+
+//postavi početne brojeve
+var prihodGodisnji = prihodSlider.value * 1000000;
+prihodKocka.value = prihodGodisnji / 1000000;
+
+var brojKonobara = konobarSlider.value;
+konobarKocka.value = brojKonobara;
+
+var brojStolova = stoloviSlider.value;
+stoloviKocka.value = brojStolova;
+
+var konobarPlaca = placaSlider.value;
+placaKocka.value = konobarPlaca;
+
+var krada = 0.1;
+var cijenaStola = 20000;
+
+efficiency(brojKonobara, konobarPlaca, prihodGodisnji);
+
+document.getElementById("sveukupnaUsteda").innerHTML = "...";
+document.getElementById("mjesecnaRata").innerHTML = "...";
 
 document.getElementById('Calculate').addEventListener('click', izracunaj);

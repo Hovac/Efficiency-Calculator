@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="row container" style="padding-top: 100px;">
+    <div class="row container" style="padding-top: 50px;">
         <div class="col s12">
             <div class="col m10 s9 ">
                 <p class="naslov center-align flow-text">Annual revenue (in millions)</p>
@@ -20,7 +20,7 @@
                     <input class="sliderDot" id="prihod" type="range" min="1" max="150" />
                 </p>
             </div>
-            <div class="col m2 s3 broj-utipkano">
+            <div class="col m2 s3">
                 <input class="numberDot" type="number" id="prihodBroj">
                 <label for="prihodBroj">Income in millions</label>
             </div>
@@ -40,6 +40,19 @@
         </div>
 
         <div class="col s12">
+            <div class="col m10 s9 ">
+                <p class="naslov center-align flow-text">Average waiter salary</p>
+                <p class="range-field">
+                    <input class="sliderDot" id="konobarPlaca" type="range" min="1" max="14999" />
+                </p>
+            </div>
+            <div class="col m2 s3">
+                <input class="numberDot" type="number" id="konobarPlacaBroj">
+                <label for="konobarPlacaBroj">Average waiter salary</label>
+            </div>
+        </div>
+
+        <div class="col s12">
             <div class="col m10 s9">
                 <p class="naslov col s12 center-align flow-text">Number of tables</p>
                 <p class="range-field col s12">
@@ -52,6 +65,21 @@
             </div>
         </div>
 
+        <div class="col s12 valign-wrapper center-align currencyContainer">
+            <label class="col s4">
+                <input id="kuna" name="currency" type="radio" checked />
+                <span style="font-size: 20px;">Kuna (HRK)</span>
+            </label>
+            <label class="col s4">
+                <input id="euro" name="currency" type="radio" />
+                <span style="font-size: 20px;">Euro (&#8364;)</span>
+            </label>
+            <label class="col s4">
+                <input id="dollar" name="currency" type="radio" />
+                <span style="font-size: 20px;">Dollar (&#36;)</span>
+            </label>
+        </div>
+
         <div class="col m6 s12 postotciContainer">
             <p class="col s6 postotci" id="postotakKrada"></p>
             <p class="col s6 postotci">Theft</p>
@@ -59,12 +87,20 @@
             <p class="col s6 postotci">Efficiency</p>
         </div>
 
-        <div id="izracunKraj" class="col m6 s12 izracunContainer">
+        <div class="col m6 s12 izracunContainer">
             <div class="col s12 izracun center-align">
                 <p>OVERALL SAVINGS:</p>
             </div>
             <div class="col s12 izracun izracunBroj center-align">
                 <p id="sveukupnaUsteda"></p>
+            </div>
+            <div class="col s12 center-align">
+                <div class="col s6" style="font-size: 1.3em; font-weight: bold;">
+                    <p>Monthly payments:</p>
+                </div>
+                <div class="col s6">
+                    <p id="mjesecnaRata" style="font-size: 1.8em; font-weight: bold;"></p>
+                </div>
             </div>
         </div>
 
