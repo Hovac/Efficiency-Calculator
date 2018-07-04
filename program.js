@@ -20,7 +20,6 @@ function izracunaj() {
     else if(dollarButton.checked) {
         document.getElementById("sveukupnaUsteda").innerHTML = sveukupnaUsteda + " &#36;";
         document.getElementById("mjesecnaRata").innerHTML = mjesecnaRata + "&#36;";
-    
     }
 }
 
@@ -38,6 +37,7 @@ function sliderChange() {
     placaKocka.value = konobarPlaca;
 
     document.getElementById("sveukupnaUsteda").innerHTML = "...";
+    document.getElementById("mjesecnaRata").innerHTML = "...";
 
     efficiency(brojKonobara, konobarPlaca, prihodGodisnji);
 }
@@ -56,9 +56,11 @@ function numberBox() {
     placaSlider.value = konobarPlaca;
 
     document.getElementById("sveukupnaUsteda").innerHTML = "...";
+    document.getElementById("mjesecnaRata").innerHTML = "...";
 
     efficiency(brojKonobara, konobarPlaca, prihodGodisnji);
 }
+
 
 function efficiency(konobar, konobarPlata, prihod) {
     efikasnost = ((konobar * konobarPlata * 12) / prihod) * 0.5 * 100;
@@ -90,6 +92,10 @@ sliders.forEach(slider => slider.addEventListener('input', sliderChange));
 //numberBox dio koda
 numbers = document.querySelectorAll('.numberDot');
 numbers.forEach(number => number.addEventListener('input', numberBox));
+
+//pretvorba para ako postoji
+radios = document.querySelectorAll('.radioDot');
+radios.forEach(radio => radio.addEventListener('input', izracunaj));
 
 
 //postavi početne brojeve
