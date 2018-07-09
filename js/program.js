@@ -10,12 +10,10 @@ function izracunaj() {
     if (kunaButton.checked) {
         document.getElementById("sveukupnaUsteda").innerHTML = sveukupnaUsteda + " kn";
         document.getElementById("mjesecnaRata").innerHTML = mjesecnaRata + "kn";
-    
     }
     else if(euroButton.checked) {
         document.getElementById("sveukupnaUsteda").innerHTML = sveukupnaUsteda + " &#8364;";
         document.getElementById("mjesecnaRata").innerHTML = (mjesecnaRata/7.4).toFixed(2) + "&#8364;";
-    
     }
     else if(dollarButton.checked) {
         document.getElementById("sveukupnaUsteda").innerHTML = sveukupnaUsteda + " &#36;";
